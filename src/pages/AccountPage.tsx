@@ -51,8 +51,7 @@ const AccountPage = () => {
   }, [user, navigate]);
 
   const handlePlay = (characterId: number) => {
-    localStorage.setItem("characterId", characterId.toString());
-    navigate("/game");
+  window.open(`http://localhost:5173/?characterId=${characterId}`, "_blank", "noopener");
   };
 
   const handleLogout = () => {
