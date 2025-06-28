@@ -50,8 +50,8 @@ const AccountPage = () => {
       .finally(() => setLoading(false));
   }, [user, navigate]);
 
-  const handlePlay = (characterId: number) => {
-  window.open(`http://localhost:5173/?characterId=${characterId}`, "_blank", "noopener");
+  const handlePlay = (characterId: number, characterName: string) => {
+  window.open(`http://localhost:5174/?characterId=${characterId}&characterName=${encodeURIComponent(characterName)}`, "_blank", "noopener");
   };
 
   const handleLogout = () => {
@@ -138,7 +138,7 @@ const AccountPage = () => {
             {characters.map((c) => (
               <li key={c.id}>
                 <strong>{c.name}</strong> (Lvl {c.level}{c.vocation ? `, ${c.vocation}` : ""}){" "}
-                <button onClick={() => handlePlay(c.id)}>Play as</button>
+                <button onClick={() => handlePlay(c.id, c.name)}>Play as</button>
                 <button onClick={() => openDeleteChar(c.id)} className={styles.deleteBtn}>Delete</button>
                 {deleteCharId === c.id && (
                   <form className={styles.deleteForm} onSubmit={confirmDeleteChar}>
